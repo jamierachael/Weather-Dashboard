@@ -25,9 +25,8 @@
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
+    <script src="http://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
         crossorigin="anonymous"></script>
@@ -53,7 +52,7 @@
                 <div class="card-body bg-light">
                     <h6 class="card-subtitle mb-2 text-muted">Search For A City</h6>
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Recipient's username"
+                        <input type="text" class="form-control search" placeholder="Recipient's username"
                             aria-label="Recipient's username" aria-describedby="button-addon2">
                         <div class="input-group-append">
                             <button class="btn btn-outline-secondary bg-primary" type="button" id="button-addon2"><i
@@ -110,15 +109,38 @@
         </div>
     </div>
     <script>
-        $(document).ready(function () {
 
-            // jQuery methods go here...
 
-            // http://api.openweathermap.org/data/2.5/forecast?id=524901&APPID={APIKEY}
-            // My Key
-            //b8ecb570e32c2e5042581abd004b71bb
+        // jQuery methods go here...
+
+        // http://api.openweathermap.org/data/2.5/forecast?id=524901&APPID={APIKEY}
+        // My Key
+        //b8ecb570e32c2e5042581abd004b71bb
+        // api.openweathermap.org/data/2.5/weather?q=London
+
+        searchInput = $(".search");
+
+        var apiKey = "b8ecb570e32c2e5042581abd004b71bb";
+        console.log(apiKey);
+        console.log(searchInput);
+
+        var url = "http://api.openweathermap.org/data/2.5/weather?q=London&Appid=" + apiKey;
+
+
+
+        $.ajax({
+            url: url,
+            method: "GET"
+        }).then(function (response) {
+            console.log(response);
 
         });
+
+
+
+
+
+
     </script>
 </body>
 
