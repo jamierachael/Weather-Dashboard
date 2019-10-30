@@ -11,22 +11,6 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <title>Weather Dashboard</title>
-    <style>
-        .position {
-            position: relative;
-            bottom: 400px;
-        }
-
-        @media screen and (max-width: 640px) {
-
-            .position {
-                position: relative;
-                bottom: 10px;
-                right: 150px;
-            }
-
-        }
-    </style>
 </head>
 
 <body>
@@ -52,87 +36,68 @@
             </div>
         </div>
 
-
-        <!-- <div class="card bg-primary"> -->
-        <div class="card-body text-center">
-
-
-            <div class="card" style="width: 18rem;">
-                <div class="card-body bg-light">
-                    <h6 class="card-subtitle mb-2 text-muted">Search For A City</h6>
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control searchInput" placeholder="Recipient's username"
-                            aria-label="Recipient's username" aria-describedby="button-addon2">
-                        <div class="input-group-append">
-                            <button class="btn btn-outline-secondary bg-primary searchButton" type="button"
-                                id="button-addon2"><i class="fas fa-search"></i></button>
-                        </div>
-                    </div>
-
-                    <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                                card's content.</p> -->
-                    <form>
-                        <input type="text" class="mb-1 pl-5"><br>
-                        <input type="text" class="mb-1 pl-5"><br>
-                        <input type="text" class="mb-1 pl-5"><br>
-                        <input type="text" class="mb-1 pl-5"><br>
-                        <input type="text" class="mb-1 pl-5"><br>
-                        <input type="text" class="mb-1 pl-5"><br>
-                        <input type="text" class="mb-1 pl-5"><br>
-                        <input type="text" class="mb-1 pl-5"><br>
-
-                    </form>
-                    <!-- <a href="#" class="card-link">Card link</a>
-                            <a href="#" class="card-link">Another link</a> -->
-                </div>
-            </div>
-
-
-        </div>
-        <div class="container offset-sm-3 position">
-            <div class="row mb-2">
-                <div class="col-sm-8">
-                    <div class="card pb-5 pt-1">
-                        <div class="card-body">
-                            <h5 class="card-title">City will go here</h5>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content.
-                            </p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <!-- Test Rows and columns-->
+        <div class="container">
             <div class="row">
-                <div class="col-sm-8">
+                <div class="col">
+                    <div class="card-body text-center">
+
+
+                        <div class="card" style="width: 18rem;">
+                            <div class="card-body bg-light">
+                                <h6 class="card-subtitle mb-2 text-muted">Search For A City</h6>
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control searchInput"
+                                        placeholder="Recipient's username" aria-label="Recipient's username"
+                                        aria-describedby="button-addon2">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-secondary bg-primary searchButton" type="button"
+                                            id="button-addon2"><i class="fas fa-search"></i></button>
+                                    </div>
+                                </div>
+
+                                <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                                        card's content.</p> -->
+                                <form>
+                                    <input type="text" class="mb-1 pl-5"><br>
+                                    <input type="text" class="mb-1 pl-5"><br>
+                                    <input type="text" class="mb-1 pl-5"><br>
+                                    <input type="text" class="mb-1 pl-5"><br>
+                                    <input type="text" class="mb-1 pl-5"><br>
+                                    <input type="text" class="mb-1 pl-5"><br>
+                                    <input type="text" class="mb-1 pl-5"><br>
+                                    <input type="text" class="mb-1 pl-5"><br>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col mt-4">
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">5-Day Forecast</h5>
                             <p class="card-text">Weather results will go here
                             </p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                            <a href="#" class="btn btn-primary">Go Somewhere</a>
+                        </div>
+                    </div>
+
+                    <div class="card pb-5 pt-1">
+                        <div class="card-body">
+                            <h5 class="card-title">City will go here</h5>
+                            <p class="card-text">With supporting text below as a natural lead-in to additional content.
+                            </p>
+                            <a href="#" class="btn btn-primary">Do Something</a>
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 
-    <!-- Test Rows and columns-->
-    <!-- <div class="container">
-        <div class="row">
-            <div class="col">
-                1 of 2
-            </div>
-            <div class="col">
-                2 of 2
-            </div>
-        </div>
-    </div> -->
-
     <script>
-
-
         // jQuery methods go here...
 
         // http://api.openweathermap.org/data/2.5/forecast?id=524901&APPID={APIKEY}
@@ -140,34 +105,59 @@
         //b8ecb570e32c2e5042581abd004b71bb
         // api.openweathermap.org/data/2.5/weather?q=London
 
-        searchInput = $(".searchInput").val();
-        searchButton = $(".searchButton");
+
+        var searchButton = $(".searchButton");
 
         var apiKey = "b8ecb570e32c2e5042581abd004b71bb";
         // console.log(apiKey);
-        console.log(searchInput);
+        // console.log(searchInput);
 
-        var url = "http://api.openweathermap.org/data/2.5/weather?q=London&Appid=" + apiKey;
+        // var url = "http://api.openweathermap.org/data/2.5/weather?q=London&Appid=" + apiKey;
 
         // var url = "http://api.openweathermap.org/data/2.5/weather?q=" + searchInput + "&Appid=" + apiKey;
+        //  http://api.openweathermap.org/data/2.5/forecast?q=London,us&mode=xml
+
+        // Will I need to make a new Ajax call? i.e, two unique url variables?
 
 
-        $.ajax({
-            url: url,
-            method: "GET"
-        }).then(function (response) {
-            console.log(response);
 
-        });
 
         searchButton.click(function () {
+
+            var searchInput = $(".searchInput").val();
+            // Variable for current weather working 
+            var urlCurrent = "http://api.openweathermap.org/data/2.5/weather?q=" + searchInput + "&Appid=" + apiKey;
+            // Variable for 5 day forecast working
+            var urlFiveDay = "http://api.openweathermap.org/data/2.5/forecast?q=" + searchInput + "&Appid=" + apiKey;
+
             console.log(searchInput);
+
+            // if (searchInput == null) {
+            //     console.log(searchInput);
+            // } else {
+            $.ajax({
+                url: urlCurrent,
+                method: "GET"
+            }).then(function (response) {
+                console.log(response);
+
+            });
+
+            $.ajax({
+                url: urlFiveDay,
+                method: "GET"
+            }).then(function (response) {
+                console.log(response);
+
+            });
+            // }
         });
+// API and variable is now working
+// Set function to create text area + Class and append the city name 1st column
+// Append local date to 2nd column
+// Test API funciton for 5-day forecast 
+// Append 5-day to 3rd column
 
-//         var movie = $("#movie-input").val();
-
-// // Here we construct our URL
-// var queryURL = "https://www.omdbapi.com/?t=" + movie + "&apikey=trilogy";
 
 
     </script>
