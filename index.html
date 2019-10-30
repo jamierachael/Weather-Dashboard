@@ -47,9 +47,8 @@
                             <div class="card-body bg-light">
                                 <h6 class="card-subtitle mb-2 text-muted">Search For A City</h6>
                                 <div class="input-group mb-3">
-                                    <input type="text" class="form-control searchInput"
-                                        placeholder="Recipient's username" aria-label="Recipient's username"
-                                        aria-describedby="button-addon2">
+                                    <input type="text" class="form-control searchInput" placeholder="Enter City Name"
+                                        aria-label="Recipient's username" aria-describedby="button-addon2">
                                     <div class="input-group-append">
                                         <button class="btn btn-outline-secondary bg-primary searchButton" type="button"
                                             id="button-addon2"><i class="fas fa-search"></i></button>
@@ -58,8 +57,8 @@
 
                                 <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
                                         card's content.</p> -->
-                                <form>
-                                    <input type="text" class="mb-1 pl-5"><br>
+                                <!-- <form>
+                                    <input type="text" class="mb-1 pl-5 current"><br>
                                     <input type="text" class="mb-1 pl-5"><br>
                                     <input type="text" class="mb-1 pl-5"><br>
                                     <input type="text" class="mb-1 pl-5"><br>
@@ -68,7 +67,15 @@
                                     <input type="text" class="mb-1 pl-5"><br>
                                     <input type="text" class="mb-1 pl-5"><br>
 
-                                </form>
+                                </form> -->
+
+                                <ul class="list-group">
+                                    <!-- <li class="list-group-item current"></li> -->
+                                    <!-- <li class="list-group-item">Dapibus ac facilisis in</li>
+                                    <li class="list-group-item">Morbi leo risus</li>
+                                    <li class="list-group-item">Porta ac consectetur ac</li>
+                                    <li class="list-group-item">Vestibulum at eros</li> -->
+                                </ul>
                             </div>
                         </div>
                     </div>
@@ -77,7 +84,7 @@
                 <div class="col mt-4">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">5-Day Forecast</h5>
+                            <h5 class="card-title">City will go here</h5>
                             <p class="card-text">Weather results will go here
                             </p>
                             <a href="#" class="btn btn-primary">Go Somewhere</a>
@@ -86,8 +93,9 @@
 
                     <div class="card pb-5 pt-1">
                         <div class="card-body">
-                            <h5 class="card-title">City will go here</h5>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content.
+                            <h5 class="card-title city">5-Day Forecast </h5>
+                            <p class="card-text info">With supporting text below as a natural lead-in to additional
+                                content.
                             </p>
                             <a href="#" class="btn btn-primary">Do Something</a>
                         </div>
@@ -109,49 +117,79 @@
         var searchButton = $(".searchButton");
 
         var apiKey = "b8ecb570e32c2e5042581abd004b71bb";
-        // console.log(apiKey);
-        // console.log(searchInput);
+
 
         // var url = "http://api.openweathermap.org/data/2.5/weather?q=London&Appid=" + apiKey;
 
         // var url = "http://api.openweathermap.org/data/2.5/weather?q=" + searchInput + "&Appid=" + apiKey;
         //  http://api.openweathermap.org/data/2.5/forecast?q=London,us&mode=xml
 
-        // Will I need to make a new Ajax call? i.e, two unique url variables?
 
+        for (var i = 0; i < localStorage.length; i++) {
 
+            var city = localStorage.getItem(i);
+            // console.log(localStorage.getItem("City"));
+            var cityName = $(".list-group").append("<li>").addClass("list-group-item");
+            cityName.append(city);
+        }
 
-
+        var keyCount = 0;
         searchButton.click(function () {
 
             var searchInput = $(".searchInput").val();
+            console.log(searchInput);
             // Variable for current weather working 
             var urlCurrent = "http://api.openweathermap.org/data/2.5/weather?q=" + searchInput + "&Appid=" + apiKey;
             // Variable for 5 day forecast working
             var urlFiveDay = "http://api.openweathermap.org/data/2.5/forecast?q=" + searchInput + "&Appid=" + apiKey;
 
+
             console.log(searchInput);
+            // Getting 404 when input is empty, if statement not working: 
+            // list-group append an li to it with just set text
+            if (searchInput == "") {
+                console.log(searchInput);
+            } else {
+                $.ajax({
+                    url: urlCurrent,
+                    method: "GET"
+                }).then(function (response) {
+                    // console.log(response);
+                    // $(".current").text(response.name);
+                    // console.log(response.name);
+                    var cityName = $(".list-group").append("<li>").addClass("list-group-item");
+                    cityName.append(response.name);
 
-            // if (searchInput == null) {
-            //     console.log(searchInput);
-            // } else {
-            $.ajax({
-                url: urlCurrent,
-                method: "GET"
-            }).then(function (response) {
-                console.log(response);
+                    var local = localStorage.setItem(keyCount, response.name);
+                    keyCount = keyCount + 1;
 
-            });
+                });
 
-            $.ajax({
-                url: urlFiveDay,
-                method: "GET"
-            }).then(function (response) {
-                console.log(response);
+                $.ajax({
+                    url: urlFiveDay,
+                    method: "GET"
+                }).then(function (response) {
+                    console.log(response);
+                    // Will have current info: Name, Date, Temp, Humidity, Wind Speed, UV index 
+                    $(".city").text(response.name);
+                    // $(".city").text(response.date?);
+                    // $(".city").text(response.main.temp);
+                    // console.log(response.main.temp);
+                    // $("info").append(response.main.temp);
+                    // $(".city").text(response.main.temp);
+                    // Will have 5 day with icons
+                    console.log(response.list[0].dt_txt);
+                    // Use moment to reformat date
+                    var dateFormat = response.list[0].dt_txt;
+                    console.log(dateFormat);
 
-            });
-            // }
+                });
+            }
         });
+
+        // function weatherResults() {
+
+        // }
 // API and variable is now working
 // Set function to create text area + Class and append the city name 1st column
 // Append local date to 2nd column
