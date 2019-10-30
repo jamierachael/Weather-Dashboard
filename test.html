@@ -47,9 +47,8 @@
                             <div class="card-body bg-light">
                                 <h6 class="card-subtitle mb-2 text-muted">Search For A City</h6>
                                 <div class="input-group mb-3">
-                                    <input type="text" class="form-control searchInput"
-                                        placeholder="Recipient's username" aria-label="Recipient's username"
-                                        aria-describedby="button-addon2">
+                                    <input type="text" class="form-control searchInput" placeholder="Enter City Name"
+                                        aria-label="Recipient's username" aria-describedby="button-addon2">
                                     <div class="input-group-append">
                                         <button class="btn btn-outline-secondary bg-primary searchButton" type="button"
                                             id="button-addon2"><i class="fas fa-search"></i></button>
@@ -125,32 +124,33 @@
         searchButton.click(function () {
 
             var searchInput = $(".searchInput").val();
+            console.log(searchInput);
             // Variable for current weather working 
             var urlCurrent = "http://api.openweathermap.org/data/2.5/weather?q=" + searchInput + "&Appid=" + apiKey;
             // Variable for 5 day forecast working
             var urlFiveDay = "http://api.openweathermap.org/data/2.5/forecast?q=" + searchInput + "&Appid=" + apiKey;
 
             console.log(searchInput);
+            // Getting 404 when input is empty, if statement not working: 
+            if (searchInput == "") {
+                console.log(searchInput);
+            } else {
+                $.ajax({
+                    url: urlCurrent,
+                    method: "GET"
+                }).then(function (response) {
+                    console.log(response);
 
-            // if (searchInput == null) {
-            //     console.log(searchInput);
-            // } else {
-            $.ajax({
-                url: urlCurrent,
-                method: "GET"
-            }).then(function (response) {
-                console.log(response);
+                });
 
-            });
+                $.ajax({
+                    url: urlFiveDay,
+                    method: "GET"
+                }).then(function (response) {
+                    console.log(response);
 
-            $.ajax({
-                url: urlFiveDay,
-                method: "GET"
-            }).then(function (response) {
-                console.log(response);
-
-            });
-            // }
+                });
+            }
         });
 // API and variable is now working
 // Set function to create text area + Class and append the city name 1st column
