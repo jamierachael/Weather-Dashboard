@@ -11,6 +11,13 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <title>Weather Dashboard</title>
+    <style>
+        ul {
+            list-style: none;
+            text-align: left;
+
+        }
+    </style>
 </head>
 
 <body>
@@ -158,6 +165,7 @@
                     // $(".current").text(response.name);
                     // console.log(response.name);
                     var cityName = $(".list-group").append("<li>").addClass("list-group-item");
+
                     cityName.append(response.name);
 
                     var local = localStorage.setItem(keyCount, response.name);
