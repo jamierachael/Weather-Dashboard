@@ -11,6 +11,21 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <title>Weather Dashboard</title>
+    <style>
+        ul {
+            list-style: none;
+            text-align: left;
+
+        }
+
+        .card-title {
+            font-size: 20px;
+        }
+
+        /* p {
+            font-size: 16px;
+        } */
+    </style>
 </head>
 
 <body>
@@ -54,21 +69,7 @@
                                             id="button-addon2"><i class="fas fa-search"></i></button>
                                     </div>
                                 </div>
-
-                                <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                                        card's content.</p> -->
-                                <!-- <form>
-                                    <input type="text" class="mb-1 pl-5 current"><br>
-                                    <input type="text" class="mb-1 pl-5"><br>
-                                    <input type="text" class="mb-1 pl-5"><br>
-                                    <input type="text" class="mb-1 pl-5"><br>
-                                    <input type="text" class="mb-1 pl-5"><br>
-                                    <input type="text" class="mb-1 pl-5"><br>
-                                    <input type="text" class="mb-1 pl-5"><br>
-                                    <input type="text" class="mb-1 pl-5"><br>
-
-                                </form> -->
-
+                                <!-- List group being appended by user input-->
                                 <ul class="list-group">
                                     <!-- <li class="list-group-item current"></li> -->
                                     <!-- <li class="list-group-item">Dapibus ac facilisis in</li>
@@ -82,13 +83,13 @@
                 </div>
 
                 <div class="col mt-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">City will go here</h5>
-                            <p class="card-text">Weather results will go here
-                            </p>
-                            <a href="#" class="btn btn-primary">Go Somewhere</a>
-                        </div>
+                    <div class="card currentCard">
+                        <!-- <div class="card-body divOne"> -->
+                        <!-- <h5 class="card-title">City will go here</h5> -->
+                        <!-- <p class="card-text">Weather results will go here
+                            </p> -->
+                        <!-- <a href="#" class="btn btn-primary">Go Somewhere</a> -->
+                        <!-- </div> -->
                     </div>
 
                     <div class="card pb-5 pt-1">
@@ -139,7 +140,9 @@
             var searchInput = $(".searchInput").val();
             console.log(searchInput);
             // Variable for current weather working 
+            // var urlCurrent = "http://api.openweathermap.org/data/2.5/weather?q=" + searchInput + "&Appid=" + apiKey;
             var urlCurrent = "http://api.openweathermap.org/data/2.5/weather?q=" + searchInput + "&Appid=" + apiKey;
+            // Imperial       "http://api.openweathermap.org/data/2.5/find?q=London&units=imperial"
             // Variable for 5 day forecast working
             var urlFiveDay = "http://api.openweathermap.org/data/2.5/forecast?q=" + searchInput + "&Appid=" + apiKey;
 
@@ -154,30 +157,72 @@
                     url: urlCurrent,
                     method: "GET"
                 }).then(function (response) {
-                    // console.log(response);
+                    console.log(response);
                     // $(".current").text(response.name);
                     // console.log(response.name);
                     var cityName = $(".list-group").append("<li>").addClass("list-group-item");
                     cityName.append(response.name);
-
+                    // Local storage
                     var local = localStorage.setItem(keyCount, response.name);
                     keyCount = keyCount + 1;
+                    // Start append 
+
+                    var currentCard = $(".currentCard").append("<div>").addClass("card-body");
+
+                    var currentName = currentCard.append("<h1>").addClass("card-title");
+                    // Appends card tite to first div
+                    currentCard.append(currentName);
+                    // Appends the city name and date on the H!
+                    currentName.append(response.name + " " + response.dt);
+
+                    // Add Temp 
+                    var currentTemp = currentName.append("<p>").addClass("card-text");
+                    currentName.append(currentTemp);
+                    currentTemp.append("Temperature: " + response.main.temp);
+                    // Add Humidity
+                    var currentHumidity = currentTemp.append("<p>").addClass("card-text");
+                    currentTemp.append(currentHumidity);
+                    currentHumidity.append("Humidity: " + response.main.humidity);
+                    // Add Wind Speed: 
+                    var currentWindSpeed = currentHumidity.append("<p>").addClass("card-text");
+                    currentHumidity.append(currentWindSpeed);
+                    currentWindSpeed.append("Wind Speed: " + response.wind.speed);
+                    // UV Index
+                    // Needs separate API call
+                    var currentUV = currentWindSpeed.append("<p>").addClass("card-text");
+                    currentWindSpeed.append(currentUV);
+                    currentUV.append("UV Index: ")
 
                 });
-
+                // Start call for 5-day forecast 
                 $.ajax({
                     url: urlFiveDay,
                     method: "GET"
                 }).then(function (response) {
                     console.log(response);
                     // Will have current info: Name, Date, Temp, Humidity, Wind Speed, UV index 
-                    $(".city").text(response.name);
-                    // $(".city").text(response.date?);
-                    // $(".city").text(response.main.temp);
-                    // console.log(response.main.temp);
-                    // $("info").append(response.main.temp);
-                    // $(".city").text(response.main.temp);
-                    // Will have 5 day with icons
+                    // var currentCard = $(".currentCard").append("<div>").addClass("card-body");
+
+                    // var currentName = currentCard.append("<h1>").addClass("card-title");
+                    // // Appends card tite to first div
+                    // currentCard.append(currentName);
+                    // // Appends the city name and date on the H!
+                    // currentName.append(response.city.name + " " + response.list[0].dt_txt);
+
+
+                    // var currentTemp = currentName.append("<p>").addClass("card-text");
+                    // currentName.append(currentTemp);
+                    // currentTemp.append(response.)
+                    // <div class="card currentCard">
+                    //     <div class="card-body">
+                    //         <!-- <h5 class="card-title">City will go here</h5> -->
+                    //         <!-- <p class="card-text">Weather results will go here
+                    //         </p> -->
+                    //         <!-- <a href="#" class="btn btn-primary">Go Somewhere</a> -->
+                    //     </div>
+
+
+
                     console.log(response.list[0].dt_txt);
                     // Use moment to reformat date
                     var dateFormat = response.list[0].dt_txt;
