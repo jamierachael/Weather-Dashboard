@@ -27,6 +27,18 @@
             height: 100px;
         }
 
+        .currentCard {
+            width: 700px;
+
+        }
+
+        .fiveDayOne {
+            padding: 20px;
+            background-color: blue;
+            color: white;
+        }
+
+
         /* p {
             font-size: 16px;
         } */
@@ -97,18 +109,23 @@
                         <!-- </div> -->
                     </div>
 
-                    <div class="card pb-5 pt-1">
+                    <div class="card pb-5 pt-1 fiveDayCard">
                         <div class="card-body">
-                            <h5 class="card-title city">5-Day Forecast </h5>
-                            <p class="card-text info">With supporting text below as a natural lead-in to additional
+                            <h5 class="card-title">5-Day Forecast: </h5>
+                            <div class="row">
+                                <div class="col-m-8 mt-4 border border-primary fiveDayOne" width="200px" height="200px">
+                                </div>
+                                <!-- <p class="card-text info">With supporting text below as a natural lead-in to additional
                                 content.
                             </p>
-                            <a href="#" class="btn btn-primary">Do Something</a>
+                            <a href="#" class="btn btn-primary">Do Something</a> -->
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
     </div>
 
     <script>
@@ -196,14 +213,15 @@
                     console.log(keyCount);
 
 
-                    // Start append 
+                    // Start Current Weather append 
                     var currentCard = $(".currentCard").append("<div>").addClass("card-body");
 
                     var currentName = currentCard.append("<p>").addClass("card-text");
                     // Appends card tite to first div
                     currentCard.append(currentName);
                     // Appends the city name and date on the H!
-                    currentName.append(response.name + " " + response.dt + '<img src="http://openweathermap.org/img/wn/09d@2x.png">');
+                    currentName.append(response.name + " " + response.dt);
+                    currentName.append('<img src="http://openweathermap.org/img/wn/09d@2x.png">');
                     // currentName.append('<img src="http://openweathermap.org/img/wn/10d@2x.png">');
                     // $('#test').empty().append('<img src="/static/on.png" height="64px" width="64px">');
 
@@ -235,10 +253,10 @@
                     method: "GET"
                 }).then(function (response) {
                     // Day 1
-                    console.log(response);
-                    console.log(response.list[0].dt_txt);
-                    console.log(response.list[0].main.temp);
-                    console.log(response.list[0].main.humidity);
+                    // console.log(response);
+                    // console.log(response.list[0].dt_txt);
+                    // console.log(response.list[0].main.temp);
+                    // console.log(response.list[0].main.humidity);
 
                     // Day 2
                     console.log(response);
@@ -265,26 +283,44 @@
                     console.log(response.list[4].main.humidity);
 
                     // date, icon, temp, humidity 
+                    // Start 5-day append
+                    // day 1
+                    var fiveDayCard = $(".fiveDayCard").append("<div>").addClass("card-body");
+                    var fiveDayOne = $(".fiveDayOne").append("<div>").addClass("card-text");
+                    fiveDayOne.addClass("col-m-8");
+                    fiveDayOne.addClass("mt-4");
+                    fiveDayOne.addClass("border");
+                    fiveDayOne.addClass("border-primary");
 
-                    // var currentCard = $(".currentCard").append("<div>").addClass("card-body");
 
-                    // var currentName = currentCard.append("<h1>").addClass("card-title");
+
+                    fiveDayCard.append.fiveDayOne;
+                    var fiveDayDateOne = fiveDayOne.append("<p>").addClass("card-text");
                     // // Appends card tite to first div
-                    // currentCard.append(currentName);
+                    fiveDayOne.append(fiveDayDateOne);
                     // // Appends the city name and date on the H!
-                    // currentName.append(response.city.name + " " + response.list[0].dt_txt);
+                    fiveDayDateOne.append(response.list[0].dt_txt);
+                    fiveDayDateOne.append("<br>" + '<img src="http://openweathermap.org/img/wn/09d@2x.png">');
+                    // // currentName.append('<img src="http://openweathermap.org/img/wn/10d@2x.png">');
 
+                    // Add Temp 
+                    var fiveDayTempOne = fiveDayDateOne.append("<p>").addClass("card-text");
+                    fiveDayDateOne.append(fiveDayTempOne);
+                    fiveDayTempOne.append("Temperature: " + response.list[0].main.temp);
 
-                    // var currentTemp = currentName.append("<p>").addClass("card-text");
-                    // currentName.append(currentTemp);
-                    // currentTemp.append(response.)
-                    // <div class="card currentCard">
+                    var fiveDayHumidityOne = fiveDayTempOne.append("<p>").addClass("card-text");
+                    fiveDayTempOne.append(fiveDayHumidityOne);
+                    fiveDayHumidityOne.append("Humidity: " + response.list[0].main.humidity + "%");
+
+                    // <div class="card pb-5 pt-1 fiveDayCard">
                     //     <div class="card-body">
-                    //         <!-- <h5 class="card-title">City will go here</h5> -->
-                    //         <!-- <p class="card-text">Weather results will go here
-                    //         </p> -->
-                    //         <!-- <a href="#" class="btn btn-primary">Go Somewhere</a> -->
+                    //         <h5 class="card-title">5-Day Forecast </h5>
+                    //         <!-- <p class="card-text info">With supporting text below as a natural lead-in to additional
+                    //             content.
+                    //         </p>
+                    //         <a href="#" class="btn btn-primary">Do Something</a> -->
                     //     </div>
+                    // </div>
 
 
 
