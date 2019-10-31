@@ -22,6 +22,11 @@
             font-size: 20px;
         }
 
+        img {
+            width: 100px;
+            height: 100px;
+        }
+
         /* p {
             font-size: 16px;
         } */
@@ -82,10 +87,10 @@
                     </div>
                 </div>
 
-                <div class="col mt-4">
+                <div class="col-m-8 mt-4">
                     <div class="card currentCard">
                         <!-- <div class="card-body divOne"> -->
-                        <!-- <h5 class="card-title">City will go here</h5> -->
+                        <h5 class="card-title mt-2 ml-3">Current Forecast</h5>
                         <!-- <p class="card-text">Weather results will go here
                             </p> -->
                         <!-- <a href="#" class="btn btn-primary">Go Somewhere</a> -->
@@ -124,6 +129,28 @@
 
         // var url = "http://api.openweathermap.org/data/2.5/weather?q=" + searchInput + "&Appid=" + apiKey;
         //  http://api.openweathermap.org/data/2.5/forecast?q=London,us&mode=xml
+        // https://www.fabriziovanmarciano.com/design-and-developer-websites/
+        // Stack Overflow(For Code that doesn’t work)
+
+        // Hacker News
+
+        // CodePen(Try out frontend code in the browser)
+
+        // Confessions of an Unintentional CTO(Holistic advice about general web development)
+
+        // Mozilla Developer Network
+
+        // Learn Front - End & Full - Stack Development
+
+        // World Wide Web Consortium(W3C)
+
+        // CSS - Tricks(THE place to go for CSS tips)
+
+        //     GitHub(Massive repository of open - source code)
+
+        // Hackr.io(For developers to find recommended resources)
+
+        // Also add Bootstrap and Jquery
 
 
         for (var i = 0; i < localStorage.length; i++) {
@@ -141,10 +168,11 @@
             console.log(searchInput);
             // Variable for current weather working 
             // var urlCurrent = "http://api.openweathermap.org/data/2.5/weather?q=" + searchInput + "&Appid=" + apiKey;
-            var urlCurrent = "http://api.openweathermap.org/data/2.5/weather?q=" + searchInput + "&Appid=" + apiKey;
+            // var urlCurrent = "http://api.openweathermap.org/data/2.5/weather?q=" + searchInput + "&Appid=" + apiKey;
             // Imperial       "http://api.openweathermap.org/data/2.5/find?q=London&units=imperial"
+            var urlCurrent = "http://api.openweathermap.org/data/2.5/weather?q=" + searchInput + "&Appid=" + apiKey + "&units=imperial";
             // Variable for 5 day forecast working
-            var urlFiveDay = "http://api.openweathermap.org/data/2.5/forecast?q=" + searchInput + "&Appid=" + apiKey;
+            var urlFiveDay = "http://api.openweathermap.org/data/2.5/forecast?q=" + searchInput + "&Appid=" + apiKey + "&units=imperial";
 
 
             console.log(searchInput);
@@ -158,31 +186,38 @@
                     method: "GET"
                 }).then(function (response) {
                     console.log(response);
-                    // $(".current").text(response.name);
+
                     // console.log(response.name);
                     var cityName = $(".list-group").append("<li>").addClass("list-group-item");
                     cityName.append(response.name);
                     // Local storage
                     var local = localStorage.setItem(keyCount, response.name);
                     keyCount = keyCount + 1;
-                    // Start append 
+                    console.log(keyCount);
 
+
+                    // Start append 
                     var currentCard = $(".currentCard").append("<div>").addClass("card-body");
 
-                    var currentName = currentCard.append("<h1>").addClass("card-title");
+                    var currentName = currentCard.append("<p>").addClass("card-text");
                     // Appends card tite to first div
                     currentCard.append(currentName);
                     // Appends the city name and date on the H!
-                    currentName.append(response.name + " " + response.dt);
+                    currentName.append(response.name + " " + response.dt + '<img src="http://openweathermap.org/img/wn/09d@2x.png">');
+                    // currentName.append('<img src="http://openweathermap.org/img/wn/10d@2x.png">');
+                    // $('#test').empty().append('<img src="/static/on.png" height="64px" width="64px">');
 
                     // Add Temp 
                     var currentTemp = currentName.append("<p>").addClass("card-text");
                     currentName.append(currentTemp);
                     currentTemp.append("Temperature: " + response.main.temp);
+                    // Vat tempF 
+                    // var currentTempF =
+
                     // Add Humidity
                     var currentHumidity = currentTemp.append("<p>").addClass("card-text");
                     currentTemp.append(currentHumidity);
-                    currentHumidity.append("Humidity: " + response.main.humidity);
+                    currentHumidity.append("Humidity: " + response.main.humidity + "%");
                     // Add Wind Speed: 
                     var currentWindSpeed = currentHumidity.append("<p>").addClass("card-text");
                     currentHumidity.append(currentWindSpeed);
@@ -199,8 +234,38 @@
                     url: urlFiveDay,
                     method: "GET"
                 }).then(function (response) {
+                    // Day 1
                     console.log(response);
-                    // Will have current info: Name, Date, Temp, Humidity, Wind Speed, UV index 
+                    console.log(response.list[0].dt_txt);
+                    console.log(response.list[0].main.temp);
+                    console.log(response.list[0].main.humidity);
+
+                    // Day 2
+                    console.log(response);
+                    console.log(response.list[1].dt_txt);
+                    console.log(response.list[1].main.temp);
+                    console.log(response.list[1].main.humidity);
+
+                    // Day 3
+                    console.log(response);
+                    console.log(response.list[2].dt_txt);
+                    console.log(response.list[2].main.temp);
+                    console.log(response.list[2].main.humidity);
+
+                    // Day 4
+                    console.log(response);
+                    console.log(response.list[3].dt_txt);
+                    console.log(response.list[3].main.temp);
+                    console.log(response.list[3].main.humidity);
+
+                    // Day 5
+                    console.log(response);
+                    console.log(response.list[4].dt_txt);
+                    console.log(response.list[4].main.temp);
+                    console.log(response.list[4].main.humidity);
+
+                    // date, icon, temp, humidity 
+
                     // var currentCard = $(".currentCard").append("<div>").addClass("card-body");
 
                     // var currentName = currentCard.append("<h1>").addClass("card-title");

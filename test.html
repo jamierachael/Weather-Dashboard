@@ -22,6 +22,11 @@
             font-size: 20px;
         }
 
+        img {
+            width: 100px;
+            height: 100px;
+        }
+
         /* p {
             font-size: 16px;
         } */
@@ -198,7 +203,9 @@
                     // Appends card tite to first div
                     currentCard.append(currentName);
                     // Appends the city name and date on the H!
-                    currentName.append(response.name + " " + response.dt);
+                    currentName.append(response.name + " " + response.dt + '<img src="http://openweathermap.org/img/wn/09d@2x.png">');
+                    // currentName.append('<img src="http://openweathermap.org/img/wn/10d@2x.png">');
+                    // $('#test').empty().append('<img src="/static/on.png" height="64px" width="64px">');
 
                     // Add Temp 
                     var currentTemp = currentName.append("<p>").addClass("card-text");
@@ -210,7 +217,7 @@
                     // Add Humidity
                     var currentHumidity = currentTemp.append("<p>").addClass("card-text");
                     currentTemp.append(currentHumidity);
-                    currentHumidity.append("Humidity: " + response.main.humidity);
+                    currentHumidity.append("Humidity: " + response.main.humidity + "%");
                     // Add Wind Speed: 
                     var currentWindSpeed = currentHumidity.append("<p>").addClass("card-text");
                     currentHumidity.append(currentWindSpeed);
@@ -227,8 +234,38 @@
                     url: urlFiveDay,
                     method: "GET"
                 }).then(function (response) {
+                    // Day 1
                     console.log(response);
-                    // Will have current info: Name, Date, Temp, Humidity, Wind Speed, UV index 
+                    console.log(response.list[0].dt_txt);
+                    console.log(response.list[0].main.temp);
+                    console.log(response.list[0].main.humidity);
+
+                    // Day 2
+                    console.log(response);
+                    console.log(response.list[1].dt_txt);
+                    console.log(response.list[1].main.temp);
+                    console.log(response.list[1].main.humidity);
+
+                    // Day 3
+                    console.log(response);
+                    console.log(response.list[2].dt_txt);
+                    console.log(response.list[2].main.temp);
+                    console.log(response.list[2].main.humidity);
+
+                    // Day 4
+                    console.log(response);
+                    console.log(response.list[3].dt_txt);
+                    console.log(response.list[3].main.temp);
+                    console.log(response.list[3].main.humidity);
+
+                    // Day 5
+                    console.log(response);
+                    console.log(response.list[4].dt_txt);
+                    console.log(response.list[4].main.temp);
+                    console.log(response.list[4].main.humidity);
+
+                    // date, icon, temp, humidity 
+
                     // var currentCard = $(".currentCard").append("<div>").addClass("card-body");
 
                     // var currentName = currentCard.append("<h1>").addClass("card-title");
