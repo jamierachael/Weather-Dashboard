@@ -165,12 +165,15 @@
                     // $(".current").text(response.name);
                     // console.log(response.name);
                     var cityName = $(".list-group").append("<li>").addClass("list-group-item");
-
                     cityName.append(response.name);
-
+                    // Local storage
                     var local = localStorage.setItem(keyCount, response.name);
                     keyCount = keyCount + 1;
 
+                    // var cardCityName = $(".card").append("<h5>").addClass("card-title");
+                    // cardCityName.append(response.name);
+                    // <div class="card-body">
+                    //         <h5 class="card-title">City will go here</h5>
                 });
 
                 $.ajax({
