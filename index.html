@@ -143,15 +143,15 @@
                         <div class="card-body">
                             <h5 class="card-title">5-Day Forecast: </h5>
                             <div class="row">
-                                <div class="col mt-4 border border-primary fiveDayOne">
+                                <div class="col mt-4 border fiveDayOne">
                                 </div>
-                                <div class="col mt-4 border border-primary fiveDayTwo ml-4">
+                                <div class="col mt-4 border fiveDayTwo ml-4">
                                 </div>
-                                <div class="col mt-4 border border-primary fiveDayThree ml-4">
+                                <div class="col mt-4 border fiveDayThree ml-4">
                                 </div>
-                                <div class="col mt-4 border border-primary fiveDayFour ml-4">
+                                <div class="col mt-4 border fiveDayFour ml-4">
                                 </div>
-                                <div class="col mt-4 border border-primary fiveDayFive ml-4">
+                                <div class="col mt-4 border fiveDayFive ml-4">
                                 </div>
                                 <!-- <p class="card-text info">With supporting text below as a natural lead-in to additional
                                 content.
@@ -169,44 +169,13 @@
     <script>
         // jQuery methods go here...
 
-        // http://api.openweathermap.org/data/2.5/forecast?id=524901&APPID={APIKEY}
-        // My Key
-        //b8ecb570e32c2e5042581abd004b71bb
-        // api.openweathermap.org/data/2.5/weather?q=London
-
-
         var searchButton = $(".searchButton");
 
         var apiKey = "b8ecb570e32c2e5042581abd004b71bb";
 
-
         // var url = "http://api.openweathermap.org/data/2.5/weather?q=London&Appid=" + apiKey;
 
         // var url = "http://api.openweathermap.org/data/2.5/weather?q=" + searchInput + "&Appid=" + apiKey;
-        //  http://api.openweathermap.org/data/2.5/forecast?q=London,us&mode=xml
-        // https://www.fabriziovanmarciano.com/design-and-developer-websites/
-        // Stack Overflow(For Code that doesn’t work)
-
-        // Hacker News
-
-        // CodePen(Try out frontend code in the browser)
-
-        // Confessions of an Unintentional CTO(Holistic advice about general web development)
-
-        // Mozilla Developer Network
-
-        // Learn Front - End & Full - Stack Development
-
-        // World Wide Web Consortium(W3C)
-
-        // CSS - Tricks(THE place to go for CSS tips)
-
-        //     GitHub(Massive repository of open - source code)
-
-        // Hackr.io(For developers to find recommended resources)
-
-        // Also add Bootstrap and Jquery
-
 
         for (var i = 0; i < localStorage.length; i++) {
 
@@ -217,14 +186,12 @@
         }
 
         var keyCount = 0;
+
         searchButton.click(function () {
 
             var searchInput = $(".searchInput").val();
             console.log(searchInput);
             // Variable for current weather working 
-            // var urlCurrent = "http://api.openweathermap.org/data/2.5/weather?q=" + searchInput + "&Appid=" + apiKey;
-            // var urlCurrent = "http://api.openweathermap.org/data/2.5/weather?q=" + searchInput + "&Appid=" + apiKey;
-            // Imperial       "http://api.openweathermap.org/data/2.5/find?q=London&units=imperial"
             var urlCurrent = "http://api.openweathermap.org/data/2.5/weather?q=" + searchInput + "&Appid=" + apiKey + "&units=imperial";
             // Variable for 5 day forecast working
             var urlFiveDay = "http://api.openweathermap.org/data/2.5/forecast?q=" + searchInput + "&Appid=" + apiKey + "&units=imperial";
@@ -257,8 +224,26 @@
                     var currentName = currentCard.append("<p>").addClass("card-text");
                     // Appends card tite to first div
                     currentCard.append(currentName);
+
+                    // // var timeUTC = moment.utc(response.dt).format("MMM Do YY");
+
+                    // var timeUTC = moment.unix(response.dt).utc(m.d);
+                    // timeUTC.format("MMM Do YY");
+
+                    // console.log(timeUTC);
+                    // timeUTC.format("L");
+                    // fiveDayDateOne.append(timeUTC);
                     // Appends the city name and date on the H!
-                    currentName.append(response.name + " " + response.dt);
+
+                    var timeUTC = new Date(response.dt * 1000);
+                    // timeUTC = timeUTC.toLocaleDateString("en-US");
+
+                    // timeUTC.moment().format("MMM Do YY");
+                    console.log(timeUTC.toLocaleDateString("en-US"));
+
+
+
+                    currentName.append(response.name + " " + timeUTC.toLocaleDateString("en-US"));
                     currentName.append('<img src="http://openweathermap.org/img/wn/09d@2x.png">');
                     // currentName.append('<img src="http://openweathermap.org/img/wn/10d@2x.png">');
                     // $('#test').empty().append('<img src="/static/on.png" height="64px" width="64px">');
@@ -267,8 +252,6 @@
                     var currentTemp = currentName.append("<p>").addClass("card-text");
                     currentName.append(currentTemp);
                     currentTemp.append("Temperature: " + response.main.temp);
-                    // Vat tempF 
-                    // var currentTempF =
 
                     // Add Humidity
                     var currentHumidity = currentTemp.append("<p>").addClass("card-text");
@@ -413,7 +396,14 @@
                     fiveDayHumidityFive.append("Humidity: " + response.list[32].main.humidity + "%");
 
 
+                    // Create array of those increments [8] - loop over that 
+                    // var img = $("<img>"); 
+                    // if (temp < 50) {
+                    //    img.attr("src", "src URL");
+                    // }
 
+                    // Inside weather data is coming from icon
+                    // IMG var and in array
 
                 });
             }
@@ -431,6 +421,10 @@
 
 
     </script>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+
 </body>
 
 </html>
