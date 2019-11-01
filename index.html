@@ -19,7 +19,7 @@
         }
 
 
-        /* li {
+        /* .border {
             border: 5px solid red;
         } */
 
@@ -92,7 +92,7 @@
                 </div>
 
                 <div class="col mt-4">
-                    <div class="card currentCard pb-5 pt-1">
+                    <div class="card currentCard pb-2 pt-1">
                         <h5 class="card-title pl-2 mt-2">Current Forecast</h5>
                     </div>
                 </div>
@@ -102,7 +102,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">5-Day Forecast: </h5>
                                 <div class="row">
-                                    <div class="col mt-4 border fiveDayOne">
+                                    <div class="col mt-4 border fiveDayOne ml-4">
                                     </div>
                                     <div class="col mt-4 border fiveDayTwo ml-4">
                                     </div>
@@ -134,6 +134,7 @@
             var city = localStorage.getItem(i);
             // console.log(localStorage.getItem("City"));
             var cityName = $(".list-group").append("<li>").addClass("list-group-item");
+
             cityName.append(city);
         }
 
@@ -178,20 +179,20 @@
                     // Add Temp 
                     var currentTemp = currentName.append("<p>").addClass("card-text");
                     currentName.append(currentTemp);
-                    currentTemp.append("Temperature: " + response.main.temp);
+                    currentTemp.append("<p>" + "Temperature: " + response.main.temp);
                     // Add Humidity
-                    var currentHumidity = currentTemp.append("<p>").addClass("card-text");
-                    currentTemp.append(currentHumidity);
-                    currentHumidity.append("Humidity: " + response.main.humidity + "%");
-                    // Add Wind Speed: 
-                    var currentWindSpeed = currentHumidity.append("<p>").addClass("card-text");
-                    currentHumidity.append(currentWindSpeed);
-                    currentWindSpeed.append("Wind Speed: " + response.wind.speed);
-                    // UV Index
-                    // Needs separate API call
-                    var currentUV = currentWindSpeed.append("<p>").addClass("card-text");
-                    currentWindSpeed.append(currentUV);
-                    currentUV.append("UV Index: ")
+                    currentTemp.append("<p>" + "Humidity: " + response.main.humidity + "%");
+                    // // Add Wind Speed: 
+                    currentTemp.append("<p>" + "Wind Speed: " + response.wind.speed);
+                    // // UV Index
+                    currentTemp.append("<p>" + "UV Index: ");
+
+
+                    // // UV Index
+                    // // Needs separate API call
+                    // var currentUV = currentWindSpeed.append("<p>").addClass("card-text");
+                    // currentWindSpeed.append(currentUV);
+                    // currentUV.append("UV Index: ")
 
                 });
                 // Start call for 5-day forecast 
