@@ -225,28 +225,13 @@
                     // Appends card tite to first div
                     currentCard.append(currentName);
 
-                    // // var timeUTC = moment.utc(response.dt).format("MMM Do YY");
-
-                    // var timeUTC = moment.unix(response.dt).utc(m.d);
-                    // timeUTC.format("MMM Do YY");
-
-                    // console.log(timeUTC);
-                    // timeUTC.format("L");
-                    // fiveDayDateOne.append(timeUTC);
-                    // Appends the city name and date on the H!
-
                     var timeUTC = new Date(response.dt * 1000);
-                    // timeUTC = timeUTC.toLocaleDateString("en-US");
 
-                    // timeUTC.moment().format("MMM Do YY");
                     console.log(timeUTC.toLocaleDateString("en-US"));
 
-
-
                     currentName.append(response.name + " " + timeUTC.toLocaleDateString("en-US"));
-                    currentName.append('<img src="http://openweathermap.org/img/wn/09d@2x.png">');
-                    // currentName.append('<img src="http://openweathermap.org/img/wn/10d@2x.png">');
-                    // $('#test').empty().append('<img src="/static/on.png" height="64px" width="64px">');
+
+                    currentName.append(`<img src="http://openweathermap.org/img/wn/${response.weather[0].icon}@2x.png">`);
 
                     // Add Temp 
                     var currentTemp = currentName.append("<p>").addClass("card-text");
@@ -273,6 +258,7 @@
                     url: urlFiveDay,
                     method: "GET"
                 }).then(function (response) {
+                    console.log(response);
 
                     // Start day One
                     // fiveDayOne
@@ -287,8 +273,9 @@
                     fiveDayOne.addClass("fiveDayColor");
                     // // Appends the city name and date on the H!
                     fiveDayDateOne.append(response.list[0].dt_txt);
-                    fiveDayDateOne.append("<br>" + '<img src="http://openweathermap.org/img/wn/09d@2x.png">');
-                    // // currentName.append('<img src="http://openweathermap.org/img/wn/10d@2x.png">');
+                    // fiveDayDateOne.append("<br>" + response.weather[0].icon);
+                    // fiveDayDateOne.append("<br>" + '<img src="http://openweathermap.org/img/wn/09d@2x.png">');
+                    fiveDayDateOne.append(`<img src="http://openweathermap.org/img/wn/${response.list[0].weather[0].icon}@2x.png">`);
 
                     // Add Temp 
                     var fiveDayTempOne = fiveDayDateOne.append("<p>").addClass("card-text");
@@ -311,7 +298,9 @@
                     fiveDayTwo.append(fiveDayDateTwo);
                     // // Appends the city name and date on the H!
                     fiveDayDateTwo.append(response.list[8].dt_txt);
-                    fiveDayDateTwo.append("<br>" + '<img src="http://openweathermap.org/img/wn/09d@2x.png">');
+                    // fiveDayDateTwo.append("<br>" + '<img src="http://openweathermap.org/img/wn/09d@2x.png">');
+                    fiveDayDateTwo.append(`<img src="http://openweathermap.org/img/wn/${response.list[8].weather[0].icon}@2x.png">`);
+
                     // // currentName.append('<img src="http://openweathermap.org/img/wn/10d@2x.png">');
 
                     // Add Temp 
@@ -335,7 +324,8 @@
                     fiveDayThree.append(fiveDayDateThree);
                     // // Appends the city name and date on the H!
                     fiveDayDateThree.append(response.list[16].dt_txt);
-                    fiveDayDateThree.append("<br>" + '<img src="http://openweathermap.org/img/wn/09d@2x.png">');
+                    // fiveDayDateThree.append("<br>" + '<img src="http://openweathermap.org/img/wn/09d@2x.png">');
+                    fiveDayDateThree.append(`<img src="http://openweathermap.org/img/wn/${response.list[16].weather[0].icon}@2x.png">`);
                     // // currentName.append('<img src="http://openweathermap.org/img/wn/10d@2x.png">');
 
                     // Add Temp 
@@ -359,7 +349,8 @@
                     fiveDayFour.append(fiveDayDateFour);
                     // // Appends the city name and date on the H!
                     fiveDayDateFour.append(response.list[24].dt_txt);
-                    fiveDayDateFour.append("<br>" + '<img src="http://openweathermap.org/img/wn/09d@2x.png">');
+                    // fiveDayDateFour.append("<br>" + '<img src="http://openweathermap.org/img/wn/09d@2x.png">');
+                    fiveDayDateFour.append(`<img src="http://openweathermap.org/img/wn/${response.list[24].weather[0].icon}@2x.png">`);
                     // // currentName.append('<img src="http://openweathermap.org/img/wn/10d@2x.png">');
 
                     // Add Temp 
@@ -383,7 +374,8 @@
                     fiveDayFive.append(fiveDayDateFive);
                     // // Appends the city name and date on the H!
                     fiveDayDateFive.append(response.list[32].dt_txt);
-                    fiveDayDateFive.append("<br>" + '<img src="http://openweathermap.org/img/wn/09d@2x.png">');
+                    // fiveDayDateFive.append("<br>" + '<img src="http://openweathermap.org/img/wn/09d@2x.png">');
+                    fiveDayDateFive.append(`<img src="http://openweathermap.org/img/wn/${response.list[32].weather[0].icon}@2x.png">`);
                     // // currentName.append('<img src="http://openweathermap.org/img/wn/10d@2x.png">');
 
                     // Add Temp 
