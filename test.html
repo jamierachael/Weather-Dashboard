@@ -25,10 +25,11 @@
             padding-left: 10px;
         }
 
-        /* border-bottom: 5px solid red;
+        /* li::after {
+            border-bottom: 5px solid red;
             border-right: 5px solid red;
-            border-left: 5px solid red; */
-
+            border-left: 5px solid red;
+        } */
 
         /* Last or top bottom right pseudo class*/
 
@@ -234,9 +235,21 @@
                             // // UV Index
 
 
-                            var urlUV = "http://api.openweathermap.org/data/2.5/uvi?appid=b8ecb570e32c2e5042581abd004b71bb&lat=37.75&lon=122.37";
+                            // var urlUV = "http://api.openweathermap.org/data/2.5/uvi?appid=b8ecb570e32c2e5042581abd004b71bb&lat=37.75&lon=122.37";
+
+                            var urlUV = `http://api.openweathermap.org/data/2.5/uvi?appid=b8ecb570e32c2e5042581abd004b71bb&lat=${response.coord.lat}&lon=${response.coord.lon}`;
 
                             // String listeral - values for lat and long 
+                            // Template literal example: 
+                            // fiveDayDateTwo.append(`<img src="http://openweathermap.org/img/wn/${response.list[8].weather[0].icon}@2x.png">`);
+
+                            // get lat and long from 
+                            // response.coord.lat
+                            // response.coord.lon
+
+                            // ${response.coord.lat}
+                            // ${response.coord.lon}
+
 
                             $.ajax({
                                 url: urlUV,
@@ -252,7 +265,6 @@
 
                             // // UV Index
 
-                            // get lat and long from 
                             // // Needs separate API call
                             // var currentUV = currentWindSpeed.append("<p>").addClass("card-text");
                             // currentWindSpeed.append(currentUV);
