@@ -55,6 +55,7 @@
             /* border: 5px solid red; */
             float: left;
             margin: 10px;
+            border: 1px solid lightgray;
             /* width: 200px;  */
 
             /* height: 250px; */
@@ -181,18 +182,7 @@
                     // Variable for 5 day forecast working
                     var urlFiveDay = "http://api.openweathermap.org/data/2.5/forecast?q=" + searchInput + "&Appid=" + apiKey + "&units=imperial";
 
-                    // var urlSixteenDay = "http://api.openweathermap.org/data/2.5/weather?q=London&Appid=b8ecb570e32c2e5042581abd004b71bb";
-
-                    //  api.openweathermap.org/data/2.5/weather?q=London
-
-                    // api.openweathermap.org/data/2.5/forecast/daily?id={city ID}&cnt={cnt}
-
-                    // http://api.openweathermap.org/data/2.5/uvi?appid={appid}&lat={lat}&lon={lon}
-
-
-
-                    //api.openweathermap.org/data/2.5/uvi?lat=37.75&lon=-122.37
-
+                    // Try 16-day API call
 
 
                     // list-group append an li to it with just set text
@@ -239,17 +229,8 @@
 
                             var urlUV = `http://api.openweathermap.org/data/2.5/uvi?appid=b8ecb570e32c2e5042581abd004b71bb&lat=${response.coord.lat}&lon=${response.coord.lon}`;
 
-                            // String listeral - values for lat and long 
-                            // Template literal example: 
-                            // fiveDayDateTwo.append(`<img src="http://openweathermap.org/img/wn/${response.list[8].weather[0].icon}@2x.png">`);
 
-                            // get lat and long from 
-                            // response.coord.lat
-                            // response.coord.lon
-
-                            // ${response.coord.lat}
-                            // ${response.coord.lon}
-
+                            // // UV Index
 
                             $.ajax({
                                 url: urlUV,
@@ -265,15 +246,10 @@
 
                             // // UV Index
 
-                            // // Needs separate API call
-                            // var currentUV = currentWindSpeed.append("<p>").addClass("card-text");
-                            // currentWindSpeed.append(currentUV);
-                            // currentUV.append("UV Index: ")
+
 
                         });
                         // Start call for 5-day forecast 
-
-
 
                         $.ajax({
                             url: urlFiveDay,
@@ -287,195 +263,16 @@
                             fiveDayDiv.empty();
                             for (var i = 0; i < day.length; i++) {
 
-                                // // Start day One
+                                // // Start Five day
                                 // // fiveDayOne
-
-
-
-
-                                // // Add Date
-
-                                // var fiveDayDate = fiveDayDiv;
-                                // fiveDayDiv.append(fiveDayDate);
-                                // .append("<p>").addClass("card-text");
-                                // // // Appends card tite to first div
 
                                 var FiveDayTimeUTC1 = new Date(response.list[i].dt * 1000);
                                 FiveDayTimeUTC1 = FiveDayTimeUTC1.toLocaleDateString("en-US");
 
-
-
                                 fiveDayDiv.append("<div class=fiveDayColor>" + "<p>" + FiveDayTimeUTC1 + "</p>" + `<img src="http://openweathermap.org/img/wn/${response.list[i].weather[0].icon}@2x.png">` + "<p>" + "Temperature: " + response.list[i].main.temp + "</p>" + "<p>" + "Humidity: " + response.list[i].main.humidity + "%" + "</p>" + "</div>");
-
-                                // fiveDayDateOne.addClass("fiveDayOne")
-                                // fiveDayDiv.addClass("fiveDayColor");
-
-
-                                // // Adjust Date
-
-                                // fiveDayDateOne.append(`<img src="http://openweathermap.org/img/wn/${response.list[i].weather[0].icon}@2x.png">`);
-
-                                // Add Temp Test 
-                                // var fiveDayTempOne = fiveDayDateOne.append("<p>" + "Temperature: " + response.list[i].main.temp + "</p>");
-                                // // Add Temp 
-                                // var fiveDayTempOne = fiveDayDateOne.append("<p>").addClass("card-text");
-                                // fiveDayDateOne.append(fiveDayTempOne);
-                                // fiveDayTempOne.append("Temperature: " + response.list[i].main.temp);
-                                // Test Humidity 
-                                // var fiveDayHumidityOne = fiveDayDateOne.append("<p>" + "Humidity: " + response.list[i].main.humidity + "%" + "</p>");
-                                // // Add Humidity
-                                // var fiveDayHumidityOne = fiveDayTempOne.append("<p>").addClass("card-text");
-                                // fiveDayTempOne.append(fiveDayHumidityOne);
-                                // fiveDayHumidityOne.append("Humidity: " + response.list[i].main.humidity + "%");
 
 
                             }
-
-                            // // Start day One
-                            // // fiveDayOne
-                            // var fiveDayCard = $(".fiveDayCard").append("<div>").addClass("card-body");
-                            // var fiveDayOne = $(".fiveDayOne").append("<div>").addClass("card-text");
-
-                            // // Add Date
-                            // fiveDayCard.append.fiveDayOne;
-                            // var fiveDayDateOne = fiveDayOne.append("<p>").addClass("card-text");
-                            // // // Appends card tite to first div
-                            // fiveDayOne.append(fiveDayDateOne);
-                            // fiveDayOne.addClass("fiveDayColor");
-                            // // // Appends the city name and date on the H!
-
-                            // // Adjust Date
-                            // var FiveDayTimeUTC1 = new Date(response.list[0].dt * 1000);
-                            // FiveDayTimeUTC1 = FiveDayTimeUTC1.toLocaleDateString("en-US");
-
-                            // fiveDayDateOne.append(FiveDayTimeUTC1);
-
-
-                            // fiveDayDateOne.append(`<img src="http://openweathermap.org/img/wn/${response.list[0].weather[0].icon}@2x.png">`);
-
-                            // // Add Temp 
-                            // var fiveDayTempOne = fiveDayDateOne.append("<p>").addClass("card-text");
-                            // fiveDayDateOne.append(fiveDayTempOne);
-                            // fiveDayTempOne.append("Temperature: " + response.list[0].main.temp);
-                            // // Add Humidity
-                            // var fiveDayHumidityOne = fiveDayTempOne.append("<p>").addClass("card-text");
-                            // fiveDayTempOne.append(fiveDayHumidityOne);
-                            // fiveDayHumidityOne.append("Humidity: " + response.list[0].main.humidity + "%");
-
-                            // // Start day two
-                            // // fiveDayTwo
-                            // var fiveDayCard = $(".fiveDayCard").append("<div>").addClass("card-body");
-                            // var fiveDayTwo = $(".fiveDayTwo").append("<div>").addClass("card-text");
-                            // // Add Date
-                            // fiveDayCard.append.fiveDayTwo;
-                            // var fiveDayDateTwo = fiveDayTwo.append("<p>").addClass("card-text");
-                            // fiveDayTwo.addClass("fiveDayColor");
-
-                            // // Adjust Date
-                            // var FiveDayTimeUTC2 = new Date(response.list[8].dt * 1000);
-                            // FiveDayTimeUTC2 = FiveDayTimeUTC2.toLocaleDateString("en-US");
-
-                            // fiveDayDateTwo.append(FiveDayTimeUTC2);
-
-                            // // // Appends card tite to first div
-                            // fiveDayTwo.append(fiveDayDateTwo);
-                            // fiveDayDateTwo.append(`<img src="http://openweathermap.org/img/wn/${response.list[8].weather[0].icon}@2x.png">`);
-
-                            // // // currentName.append('<img src="http://openweathermap.org/img/wn/10d@2x.png">');
-
-                            // // Add Temp 
-                            // var fiveDayTempTwo = fiveDayDateTwo.append("<p>").addClass("card-text");
-                            // fiveDayDateTwo.append(fiveDayTempTwo);
-                            // fiveDayTempTwo.append("Temperature: " + response.list[8].main.temp);
-                            // // Add Humidity
-                            // var fiveDayHumidityTwo = fiveDayTempTwo.append("<p>").addClass("card-text");
-                            // fiveDayTempTwo.append(fiveDayHumidityTwo);
-                            // fiveDayHumidityTwo.append("Humidity: " + response.list[8].main.humidity + "%");
-
-                            // // Start day Three
-                            // // fiveDayThree
-                            // var fiveDayCard = $(".fiveDayCard").append("<div>").addClass("card-body");
-                            // var fiveDayThree = $(".fiveDayThree").append("<div>").addClass("card-text");
-                            // // Add Date
-                            // fiveDayCard.append.fiveDayThree;
-                            // fiveDayThree.addClass("fiveDayColor");
-                            // var fiveDayDateThree = fiveDayThree.append("<p>").addClass("card-text");
-
-                            // //   // Adjust Date
-                            // var FiveDayTimeUTC3 = new Date(response.list[16].dt * 1000);
-                            // FiveDayTimeUTC3 = FiveDayTimeUTC3.toLocaleDateString("en-US");
-                            // fiveDayDateThree.append(FiveDayTimeUTC3);
-
-                            // // // Appends card tite to first div
-                            // fiveDayThree.append(fiveDayDateThree);
-
-                            // fiveDayDateThree.append(`<img src="http://openweathermap.org/img/wn/${response.list[16].weather[0].icon}@2x.png">`);
-                            // // // currentName.append('<img src="http://openweathermap.org/img/wn/10d@2x.png">');
-
-                            // // Add Temp 
-                            // var fiveDayTempThree = fiveDayDateThree.append("<p>").addClass("card-text");
-                            // fiveDayDateThree.append(fiveDayTempThree);
-                            // fiveDayTempThree.append("Temperature: " + response.list[16].main.temp);
-                            // // Add Humidity
-                            // var fiveDayHumidityThree = fiveDayTempThree.append("<p>").addClass("card-text");
-                            // fiveDayTempThree.append(fiveDayHumidityThree);
-                            // fiveDayHumidityThree.append("Humidity: " + response.list[16].main.humidity + "%");
-
-                            // // Start day Four
-                            // // fiveDayFour
-                            // var fiveDayCard = $(".fiveDayCard").append("<div>").addClass("card-body");
-                            // var fiveDayFour = $(".fiveDayFour").append("<div>").addClass("card-text");
-                            // // Add Date
-                            // fiveDayCard.append.fiveDayFour;
-                            // fiveDayFour.addClass("fiveDayColor");
-                            // var fiveDayDateFour = fiveDayFour.append("<p>").addClass("card-text");
-
-                            // //   // Adjust Date
-                            // var FiveDayTimeUTC4 = new Date(response.list[24].dt * 1000);
-                            // FiveDayTimeUTC4 = FiveDayTimeUTC4.toLocaleDateString("en-US");
-                            // fiveDayDateFour.append(FiveDayTimeUTC4);
-
-                            // // // Appends card tite to first div
-                            // fiveDayFour.append(fiveDayDateFour);
-                            // fiveDayDateFour.append(`<img src="http://openweathermap.org/img/wn/${response.list[24].weather[0].icon}@2x.png">`);
-
-
-                            // // Add Temp 
-                            // var fiveDayTempFour = fiveDayDateFour.append("<p>").addClass("card-text");
-                            // fiveDayDateFour.append(fiveDayTempFour);
-                            // fiveDayTempFour.append("Temperature: " + response.list[24].main.temp);
-                            // // Add Humidity
-                            // var fiveDayHumidityFour = fiveDayTempFour.append("<p>").addClass("card-text");
-                            // fiveDayTempFour.append(fiveDayHumidityFour);
-                            // fiveDayHumidityFour.append("Humidity: " + response.list[24].main.humidity + "%");
-
-                            // // Start day Five
-                            // // fiveDayFive
-                            // var fiveDayCard = $(".fiveDayCard").append("<div>").addClass("card-body");
-                            // var fiveDayFive = $(".fiveDayFive").append("<p>").addClass("card-text");
-                            // // Add Date
-                            // fiveDayCard.append.fiveDayFive;
-                            // fiveDayFive.addClass("fiveDayColor");
-                            // var fiveDayDateFive = fiveDayFive.append("<p>").addClass("card-text");
-
-                            // // Adjust Date
-                            // var FiveDayTimeUTC5 = new Date(response.list[32].dt * 1000);
-                            // FiveDayTimeUTC5 = FiveDayTimeUTC5.toLocaleDateString("en-US");
-                            // fiveDayDateFive.append(FiveDayTimeUTC5);
-
-                            // // // Appends card tite to first div
-                            // fiveDayFive.append(fiveDayDateFive);
-                            // fiveDayDateFive.append(`<img src="http://openweathermap.org/img/wn/${response.list[32].weather[0].icon}@2x.png">`);
-                            // // // currentName.append('<img src="http://openweathermap.org/img/wn/10d@2x.png">');
-
-                            // // Add Temp 
-                            // var fiveDayTempFive = fiveDayDateFive.append("<p>").addClass("card-text");
-                            // fiveDayDateFive.append(fiveDayTempFive);
-                            // fiveDayTempFive.append("Temperature: " + response.list[32].main.temp);
-                            // // Add Humidity
-                            // var fiveDayHumidityFive = fiveDayTempFive.append("<p>").addClass("card-text");
-                            // fiveDayTempFive.append(fiveDayHumidityFive);
-                            // fiveDayHumidityFive.append("Humidity: " + response.list[32].main.humidity + "%");
 
                         });
                     }
