@@ -25,6 +25,15 @@
             padding-left: 10px;
         }
 
+        /* border-bottom: 5px solid red;
+            border-right: 5px solid red;
+            border-left: 5px solid red; */
+
+
+        /* Last or top bottom right pseudo class*/
+
+
+
         /* .border {
             border: 5px solid red;
         } */
@@ -42,9 +51,9 @@
             padding: 20px;
             background-color: #1E90FF;
             color: white;
-            border: 5px solid red;
-            /* float: left; */
-            margin: 20px;
+            /* border: 5px solid red; */
+            float: left;
+            margin: 10px;
             /* width: 200px;  */
 
             /* height: 250px; */
@@ -122,7 +131,7 @@
                             <!-- <div class="card-body"> -->
                             <h5 class="card-title">5-Day Forecast: </h5>
                             <div class="row">
-                                <div class="col border fiveDayOne">
+                                <div class="col fiveDayOne">
                                 </div>
 
                                 <!-- <div class="col mt-4 border fiveDayTwo ml-4">
@@ -227,6 +236,8 @@
 
                             var urlUV = "http://api.openweathermap.org/data/2.5/uvi?appid=b8ecb570e32c2e5042581abd004b71bb&lat=37.75&lon=122.37";
 
+                            // String listeral - values for lat and long 
+
                             $.ajax({
                                 url: urlUV,
                                 method: "GET"
@@ -240,6 +251,8 @@
                             });
 
                             // // UV Index
+
+                            // get lat and long from 
                             // // Needs separate API call
                             // var currentUV = currentWindSpeed.append("<p>").addClass("card-text");
                             // currentWindSpeed.append(currentUV);
@@ -257,13 +270,15 @@
                             console.log(response);
 
                             var day = [0, 8, 16, 24, 32];
-
+                            var fiveDayCard = $(".fiveDayCard").addClass("card-body");
+                            var fiveDayDiv = $(".fiveDayOne").addClass("card-text");
+                            fiveDayDiv.empty();
                             for (var i = 0; i < day.length; i++) {
 
                                 // // Start day One
                                 // // fiveDayOne
-                                var fiveDayCard = $(".fiveDayCard").addClass("card-body");
-                                var fiveDayDiv = $(".fiveDayOne").addClass("card-text");
+
+
 
 
                                 // // Add Date
@@ -272,15 +287,16 @@
                                 // fiveDayDiv.append(fiveDayDate);
                                 // .append("<p>").addClass("card-text");
                                 // // // Appends card tite to first div
+
                                 var FiveDayTimeUTC1 = new Date(response.list[i].dt * 1000);
                                 FiveDayTimeUTC1 = FiveDayTimeUTC1.toLocaleDateString("en-US");
 
 
 
-                                fiveDayDiv.append("<div>" + "<p>" + FiveDayTimeUTC1 + "</p>" + `<img src="http://openweathermap.org/img/wn/${response.list[i].weather[0].icon}@2x.png">` + "<p>" + "Temperature: " + response.list[i].main.temp + "</p>" + "<p>" + "Humidity: " + response.list[i].main.humidity + "%" + "</p>" + "</div>");
+                                fiveDayDiv.append("<div class=fiveDayColor>" + "<p>" + FiveDayTimeUTC1 + "</p>" + `<img src="http://openweathermap.org/img/wn/${response.list[i].weather[0].icon}@2x.png">` + "<p>" + "Temperature: " + response.list[i].main.temp + "</p>" + "<p>" + "Humidity: " + response.list[i].main.humidity + "%" + "</p>" + "</div>");
 
                                 // fiveDayDateOne.addClass("fiveDayOne")
-                                fiveDayDiv.addClass("fiveDayColor");
+                                // fiveDayDiv.addClass("fiveDayColor");
 
 
                                 // // Adjust Date
