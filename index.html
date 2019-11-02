@@ -61,14 +61,25 @@
             /* height: 250px; */
         }
 
-        /* .fiveDayOne {
-            border: 5px solid red;
+        /* .fiveDayCard {
+            width: 100%; */
+        /* border: 5px solid red; */
+        /* margin-top: 50%; */
+        /* margin-right: 80px; */
+        /* padding-right: 40px; */
+        /* padding-left: 20px; */
 
-        } */
+        /* } */
 
         /* .UV {
             background-color: red;
         } */
+        /* .currentCard {
+            width: 50%;
+            /* margin-right: 30px; */
+        /* }  */
+
+        */
     </style>
 </head>
 
@@ -122,33 +133,22 @@
                     </div>
                 </div>
 
-                <div class="col mt-4">
+                <div class="col mt-4 mr-5">
                     <div class="card currentCard pb-2 pt-1">
-                        <h5 class="card-title pl-2 mt-2">Current Forecast</h5>
+                        <h5 class="card-title mt-2 ml-5">Current Forecast</h5>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col mt-4">
-                        <div class="card pb-5 fiveDayCard">
+                        <div class="card pb-5 fiveDayCard pl-5">
                             <!-- <div class="card-body"> -->
-                            <h5 class="card-title">5-Day Forecast: </h5>
+                            <h5 class="card-title mt-2 mr-5">5-Day Forecast </h5>
                             <div class="row">
                                 <div class="col fiveDayOne">
                                 </div>
 
-                                <!-- <div class="col mt-4 border fiveDayTwo ml-4">
-                                    </div>
-                                    <div class="col mt-4 border fiveDayThree ml-4">
-                                    </div>
-                                    <div class="col mt-4 border fiveDayFour ml-4">
-                                    </div>
-                                    <div class="col mt-4 border fiveDayFive ml-4"> -->
-
-                                <!-- </div> -->
-                                <!-- </div> -->
-                                <!-- </div> -->
                             </div>
-                            <!-- </div> -->
+
                         </div>
                     </div>
                 </div>
@@ -160,6 +160,11 @@
                 var searchButton = $(".searchButton");
 
                 var apiKey = "b8ecb570e32c2e5042581abd004b71bb";
+
+
+
+
+
 
 
                 for (var i = 0; i < localStorage.length; i++) {
@@ -182,7 +187,8 @@
                     // Variable for 5 day forecast working
                     var urlFiveDay = "http://api.openweathermap.org/data/2.5/forecast?q=" + searchInput + "&Appid=" + apiKey + "&units=imperial";
 
-                    // Try 16-day API call
+
+
 
 
                     // list-group append an li to it with just set text
@@ -261,7 +267,8 @@
                             var fiveDayCard = $(".fiveDayCard").addClass("card-body");
                             var fiveDayDiv = $(".fiveDayOne").addClass("card-text");
                             fiveDayDiv.empty();
-                            for (var i = 0; i < day.length; i++) {
+                            day.forEach(function (i) {
+                                // for (var i = 0; i < day.length; i++) {
 
                                 // // Start Five day
                                 // // fiveDayOne
@@ -272,7 +279,7 @@
                                 fiveDayDiv.append("<div class=fiveDayColor>" + "<p>" + FiveDayTimeUTC1 + "</p>" + `<img src="http://openweathermap.org/img/wn/${response.list[i].weather[0].icon}@2x.png">` + "<p>" + "Temperature: " + response.list[i].main.temp + "</p>" + "<p>" + "Humidity: " + response.list[i].main.humidity + "%" + "</p>" + "</div>");
 
 
-                            }
+                            })
 
                         });
                     }
