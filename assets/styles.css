@@ -1,24 +1,25 @@
+/* Jamie Morris Homework-6 Weather Dashboard */
+/* styles for UL */
 ul {
     list-style: none;
 
 }
-
+/* styles for Li */
 li {
     border-bottom: 1px solid lightgray;
     text-align: left;
-    /* margin-left: 10px; */
     padding-left: 10px;
 }
-
+/* styles for card titles  */
 .card-title {
     font-size: 20px;
 }
-
+/* styles for img size  */
 img {
     width: 100px;
     height: 100px;
 }
-
+/* styles for five day forecast colors */
 .fiveDayColor {
     padding: 20px;
     background-color: #1E90FF;

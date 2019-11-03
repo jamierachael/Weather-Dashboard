@@ -1,8 +1,11 @@
+// Jamie Morris Homework-6 Weather Dashboard
+
+// Variables 
 var searchButton = $(".searchButton");
 
 var apiKey = "b8ecb570e32c2e5042581abd004b71bb";
 
-
+// Forloop for persisting the data onto HMTL page
 for (var i = 0; i < localStorage.length; i++) {
 
     var city = localStorage.getItem(i);
@@ -11,9 +14,9 @@ for (var i = 0; i < localStorage.length; i++) {
 
     cityName.append("<li>" + city + "</li>");
 }
-
+// Key count for local storage 
 var keyCount = 0;
-
+// Search button click event
 searchButton.click(function () {
 
     var searchInput = $(".searchInput").val();
@@ -23,7 +26,7 @@ searchButton.click(function () {
     // Variable for 5 day forecast working
     var urlFiveDay = "http://api.openweathermap.org/data/2.5/forecast?q=" + searchInput + "&Appid=" + apiKey + "&units=imperial";
 
-    // list-group append an li to it with just set text
+
     if (searchInput == "") {
         console.log(searchInput);
     } else {
@@ -31,7 +34,7 @@ searchButton.click(function () {
             url: urlCurrent,
             method: "GET"
         }).then(function (response) {
-
+            // list-group append an li to it with just set text
             // console.log(response.name);
             var cityName = $(".list-group").addClass("list-group-item");
             cityName.append("<li>" + response.name + "</li>");
@@ -63,8 +66,7 @@ searchButton.click(function () {
             // UV Index URL
             var urlUV = `http://api.openweathermap.org/data/2.5/uvi?appid=b8ecb570e32c2e5042581abd004b71bb&lat=${response.coord.lat}&lon=${response.coord.lon}`;
 
-            // // UV Index
-
+            // UV Index
             $.ajax({
                 url: urlUV,
                 method: "GET"
@@ -83,12 +85,12 @@ searchButton.click(function () {
             url: urlFiveDay,
             method: "GET"
         }).then(function (response) {
-
+            // Array for 5-days 
             var day = [0, 8, 16, 24, 32];
             var fiveDayCard = $(".fiveDayCard").addClass("card-body");
             var fiveDayDiv = $(".fiveDayOne").addClass("card-text");
             fiveDayDiv.empty();
-
+            // For each for 5 days
             day.forEach(function (i) {
                 var FiveDayTimeUTC1 = new Date(response.list[i].dt * 1000);
                 FiveDayTimeUTC1 = FiveDayTimeUTC1.toLocaleDateString("en-US");
