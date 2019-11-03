@@ -3,7 +3,7 @@ Homework-6 Weather Dashboard
 ## Jamie Morris Homework-6 Weather-Dashboard
 
 * ['Code-Quiz'](https://github.com/jamierachael/Weather-Dashboard)
-* ['Code-Quiz'](https://jamierachael.github.io/Weather-Dashboard)
+* ['Code-Quiz'](https://jamierachael.github.io/Weather-Dashboard/)
 * ['Code-Quiz'](https://drive.google.com/file/d/1jQZXq_RikDuU1DaMDluxy2vHRhgVmWhF/view)
 
 
