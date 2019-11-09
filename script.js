@@ -52,7 +52,7 @@ searchButton.click(function () {
             // Adjust Date 
             var timeUTC = new Date(response.dt * 1000);
             currentName.append(response.name + " " + timeUTC.toLocaleDateString("en-US"));
-            currentName.append(`<img src="http://openweathermap.org/img/wn/${response.weather[0].icon}@2x.png">`);
+            currentName.append(`<img src="https://openweathermap.org/img/wn/${response.weather[0].icon}@2x.png">`);
             // Add Temp 
             var currentTemp = currentName.append("<p>");
             // .addClass("card-text");
@@ -64,7 +64,7 @@ searchButton.click(function () {
             currentTemp.append("<p>" + "Wind Speed: " + response.wind.speed + "</p>");
 
             // UV Index URL
-            var urlUV = `http://api.openweathermap.org/data/2.5/uvi?appid=b8ecb570e32c2e5042581abd004b71bb&lat=${response.coord.lat}&lon=${response.coord.lon}`;
+            var urlUV = `https://api.openweathermap.org/data/2.5/uvi?appid=b8ecb570e32c2e5042581abd004b71bb&lat=${response.coord.lat}&lon=${response.coord.lon}`;
 
             // UV Index
             $.ajax({
