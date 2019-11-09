@@ -22,9 +22,9 @@ searchButton.click(function () {
     var searchInput = $(".searchInput").val();
 
     // Variable for current weather working 
-    var urlCurrent = "http://api.openweathermap.org/data/2.5/weather?q=" + searchInput + "&Appid=" + apiKey + "&units=imperial";
+    var urlCurrent = "https://api.openweathermap.org/data/2.5/weather?q=" + searchInput + "&Appid=" + apiKey + "&units=imperial";
     // Variable for 5 day forecast working
-    var urlFiveDay = "http://api.openweathermap.org/data/2.5/forecast?q=" + searchInput + "&Appid=" + apiKey + "&units=imperial";
+    var urlFiveDay = "https://api.openweathermap.org/data/2.5/forecast?q=" + searchInput + "&Appid=" + apiKey + "&units=imperial";
 
 
     if (searchInput == "") {
