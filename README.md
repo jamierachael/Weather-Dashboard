@@ -1,10 +1,11 @@
 # Weather-Dashboard
-Homework-6 Weather Dashboard
-## Jamie Morris Homework-6 Weather-Dashboard
+
 
 * ['Weather-Dashboard - Github'](https://github.com/jamierachael/Weather-Dashboard)
 * ['Weather-Dashboard - Github IO'](https://jamierachael.github.io/Weather-Dashboard/)
 * ['Weather-Dashboard - Demo'](https://drive.google.com/file/d/1jQZXq_RikDuU1DaMDluxy2vHRhgVmWhF/view)
+
+![Weather-Dashboard Demo](assets/demo/gif.gif)
 
 
 ### Summary
@@ -57,13 +58,14 @@ Homework-6 Weather Dashboard
         * For each loop
         * Local Storage set and get 
 
+## Authors
 
-### Code Validation 
-    * These use W3C Code Validators for HTML and CSS
-    * Please provide feedback whether this image syntax is correct
-        * Format: ![Validator-HTML-Index](assets/images/Validator-HTML-Index)
-        * Format: ![Validator-CSS](assets/images/Validator-CSS)
-        * Format: ![Validator-CSS](assets/images/Validator-JS)
+* **Jamie Rachael Morris** - *Initial work* - [Git Hub Profile](https://github.com/jamierachael)
+* UNH Project Design
+
+## Acknowledgments
+
+* Hat tip to UNH for providing project parameters and code examples
 
 
 
